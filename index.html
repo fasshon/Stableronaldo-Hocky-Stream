@@ -1,0 +1,140 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XP Bar</title>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: transparent; 
+    font-family: 'Luckiest Guy', sans-serif;
+}
+
+.xp-container {
+    width: 350px;
+    background: #333;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px #000;
+    position: relative;
+}
+
+/* Face circle */
+.face-circle {
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 4px solid #00ff15;
+    position: relative;
+    top: -50px;
+}
+
+.face-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Level and rank */
+.level-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00ff15;
+    margin-top: -30px;
+}
+
+.rank-text {
+    font-size: 18px;
+    color: #fff;
+    margin-top: 5px;
+}
+
+
+.xp-bar-bg {
+    width: 100%;
+    height: 25px;
+    background: #555;
+    border-radius: 50px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 5px #000;
+}
+
+.xp-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #00ff15, #a0ff70);
+    border-radius: 50px 0 0 50px;
+    box-shadow: 0 0 10px #00ff15;
+    transition: width 0.5s ease;
+}
+
+.xp-bar-ticks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.tick {
+    width: 2px;
+    height: 100%;
+    background: #000;
+}
+
+.xp-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+<div class="xp-container">
+    <div class="face-circle">
+        <img src="https://cdn.discordapp.com/attachments/1335467145114423358/1411843494678495242/image-removebg-preview1.png?ex=68b62137&is=68b4cfb7&hm=9384c1ded27d3f844e98ea501df402ec876e91cc7781000253d27aa9c43fa035&" alt="Face">
+    </div>
+    <div class="level-text" id="level-text">Level: {Level}</div>
+    <div class="rank-text" id="rank-text">{Rank}</div>
+<div class="xp-bar-bg">
+    <div class="xp-bar-fill" id="xp-fill"></div>
+    <div class="xp-bar-ticks">
+        <div class="tick"></div>
+        <div class="tick"></div>
+        <div class="tick"></div>
+        <div class="tick"></div>
+    </div>
+</div>
+    <div class="xp-labels">
+        <span>1</span>
+        <span>50</span>
+        <span>100</span>
+    </div>
+</div>
+
+<script>
+function updateXPBar(xpString) {
+    const xpValue = parseInt(xpString, 10);
+    const xpPercent = Math.min(Math.max(xpValue, 0), 100);
+    document.getElementById('xp-fill').style.width = xpPercent + '%';
+}
+
+let xpString = {Experiance}; 
+updateXPBar(xpString);
+</script>
+</body>
